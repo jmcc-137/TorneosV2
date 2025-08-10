@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Torneosv2.src.Modules.Equipos.UI;
 using Torneosv2.src.Modules.Torneos.UI;
 using Torneosv2.src.Shared.Context;
 using Torneosv2.src.Shared.Helpers;
@@ -46,6 +47,9 @@ namespace Torneosv2.src.UI
                 {
                     case 0:
                         await new MenuTorneo(_context).RenderMenu();
+                        break;
+                    case 1:
+                        await new MenuEquipo(_context).RenderMenu();
                         break;
                     case 5:
                         return;

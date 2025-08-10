@@ -37,8 +37,8 @@ public class TorneoService : ITorneoService
             Ffecha = ffecha,
         };
 
-        _repo.Add(torneo);
-        _repo.Update(torneo);
+         _repo.Add(torneo);
+        await _repo.SaveAsync();
 
     }
 
@@ -73,13 +73,5 @@ public class TorneoService : ITorneoService
         return await _repo.GetByIdAsync(id);
     }
 
-    public Task<IEnumerable<Torneo>> GetAllAsync()
-    {
-        throw new NotImplementedException();
-    }
 
-    public Task RegistrarTorneoAsync(string nombre)
-    {
-        throw new NotImplementedException();
-    }
 }
