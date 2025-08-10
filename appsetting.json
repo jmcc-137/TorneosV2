@@ -1,0 +1,6 @@
+{
+    "ConnectionStrings": {
+        "MySqlDB": "Server=localhost;Database=TorneosGestor;User=jm;Password=1234;"
+    }
+
+}

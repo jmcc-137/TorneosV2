@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Torneosv2")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4a13204a28be578b910f2a84f537a171933d8087")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+13b93f1ebbcea20271e70bdf38f0f96ef7154fa1")]
 [assembly: System.Reflection.AssemblyProductAttribute("Torneosv2")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Torneosv2")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
