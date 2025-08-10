@@ -52,7 +52,7 @@ public class MenuTorneo
                     await _torneoMenuController.HandleCreateTorneoAsync();
                     break;
                 case 2:
-                    await _torneoMenuController.HandleSearchTorneoAsync ();
+                    await _torneoMenuController.HandleSearchTorneoAsync();
                     break;
                 case 3:
                     await _torneoMenuController.HandleDeleteTorneoAsync();
@@ -72,85 +72,4 @@ public class MenuTorneo
 
         }
     }
-
-
-    
-
-    private async Task ActualizarTorneo()
-    {
-        Console.Write("ID a actualizar: ");
-        if (!int.TryParse(Console.ReadLine(), out var id))
-        {
-            Console.WriteLine("ID inválido.");
-            return;
-        }
-
-        var existente = await _service.ObtenerTorneosPorSuIdAsync(id);
-        if (existente is null)
-        {
-            Console.WriteLine("País no encontrado.");
-            return;
-        }
-
-        Console.Write($"Nuevo nombre (actual: {existente.Nombre}): ");
-        var nuevoNombre = Console.ReadLine();
-        Console.Write($"Nuevo pais (actual: {existente.Pais}): ");
-        var nuevoPais = Console.ReadLine()!;
-        Console.Write($"Nueva ciudad (actual: {existente.Ciudad}): ");
-        var nuevaCiudad = Console.ReadLine()!;
-
-        DateTime NfechaInicio;
-        DateTime NfechaFinal;
-        while (true)
-        {
-            Console.Write($"Nueva fecha de inicio (actual: {existente.Ifecha}): ");
-            if (DateTime.TryParse(Console.ReadLine(), out NfechaInicio))
-            {
-                break;
-            }
-            Console.WriteLine("Formato de fecha invalido. Intentente de nuevo");
-        }
-
-        while (true)
-        {
-            Console.Write($"Nueva fecha final (actual: {existente.Ffecha}): ");
-            if (DateTime.TryParse(Console.ReadLine(), out NfechaFinal))
-            {
-                if (NfechaFinal >= NfechaInicio)
-                {
-                    break;
-                }
-                Console.WriteLine("La fecha final debe ser mayor o igual a la fecha de inicio.");
-            }
-            else
-            {
-                Console.WriteLine("Formato de fecha invalido. Intentente de nuevo");
-            }
-
-        }
-        
-        if (string.IsNullOrWhiteSpace(nuevoNombre))
-        {
-            Console.WriteLine("El nombre es obligatorio.");
-            return;
-        }
-        else
-        {
-            existente.Nombre = nuevoNombre;
-            existente.Pais = nuevoPais;
-            existente.Ciudad = nuevaCiudad;
-            existente.Ifecha = NfechaInicio;
-            existente.Ffecha = NfechaFinal;
-
-            await _service.ActualizarTorneo(id,nuevoNombre, nuevoPais, nuevaCiudad, NfechaInicio, NfechaFinal);
-            Console.WriteLine("País actualizado.");
-
-
-
-        }
-    }
 }
-    
-    
-
-

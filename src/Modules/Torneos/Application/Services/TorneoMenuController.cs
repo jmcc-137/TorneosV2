@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Torneosv2.src.Modules.Torneos.Domain.Entities;
 using Torneosv2.src.Modules.Torneos.Application.Interfaces;
+using Torneosv2.src.Shared.utils;
 
 namespace Torneosv2.src.Modules.Torneos.Application.Services
 {
@@ -23,17 +24,11 @@ namespace Torneosv2.src.Modules.Torneos.Application.Services
         {
             // Implementación para registrar un torneo
                 Console.Clear();
-            Console.WriteLine("Ingere el Id");
-                int Id;
-                while (true)
-                {
-                    Console.WriteLine("ID del Torneo:");
-                    if (int.TryParse(Console.ReadLine(), out Id))
-                    {
-                        break;
-                    }
-                    Console.WriteLine("ID inválido, debe ser un número");
-                }
+
+                int Id = await IdGeneretor.GenerateUniqueIdAsync(
+                    async () => await _torneoService.ConsultarTorneosAsync(),
+                      Torneo => Torneo.Id);
+                Console.WriteLine($"ID generado: {Id}");
                 Console.WriteLine("Ingrese el nombre:");
                 string? nombre = Console.ReadLine();
                 Console.WriteLine("Ingrese el pais");
@@ -151,7 +146,9 @@ namespace Torneosv2.src.Modules.Torneos.Application.Services
         public async Task HandleUpdateTorneoAsync()
         {
             // Implementación para actualizar un torneo
-            Console.Clear();
+
+            await HandleShowTorneosAsync();
+            Console.WriteLine();
             Console.Write("ID a actualizar: ");
             if (!int.TryParse(Console.ReadLine(), out var id))
             {
