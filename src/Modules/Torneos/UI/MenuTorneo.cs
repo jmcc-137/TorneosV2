@@ -44,8 +44,17 @@ public class MenuTorneo
             ImpresorLento.Imprimir("║ 5. 👀  Mostrar Torneos         ║");
             ImpresorLento.Imprimir("║ 6. 🔙  Volver al Menú Principal║");
             ImpresorLento.Imprimir("╚════════════════════════════════╝");
-            int op = int.Parse(Console.ReadLine()!);
+            
             var _torneoMenuController = new TorneoMenuController(_service);
+            int op;
+            Console.Write("Seleccione una opción: ");
+            string input = Console.ReadLine() ?? "";
+            if (!int.TryParse(input, out op))
+            {
+                    Console.WriteLine("Debe ingresar un número válido. Presione cualquier tecla para continuar...");
+                    Console.ReadKey();
+                    continue;
+            }
             switch (op)
             {
                 case 1:

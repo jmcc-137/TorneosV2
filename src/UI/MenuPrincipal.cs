@@ -41,7 +41,17 @@ namespace Torneosv2.src.UI
                 ImpresorLento.Imprimir("3. 💰  Transferencias (Compra, Préstamo)");
                 ImpresorLento.Imprimir("4. 📊  Estadísticas");
                 ImpresorLento.Imprimir("5. ❌  Salir");
-                int op = int.Parse(Console.ReadLine()!);
+
+                Console.Write("Seleccione una opción: ");
+                var input = Console.ReadLine();
+
+                int op;
+                if (!int.TryParse(input, out op))
+                {
+                    Console.WriteLine("Debe ingresar un número válido. Presione cualquier tecla para continuar...");
+                    Console.ReadKey();
+                    continue;
+                }
 
                 switch (op)
                 {

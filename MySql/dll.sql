@@ -18,3 +18,12 @@ CREATE TABLE IF NOT EXISTS Equipo (
     Nombre VARCHAR(100) NOT NULL,
     Pais VARCHAR(100) NOT NULL
 );
+
+-- Relación N:M entre Torneo y Equipo
+CREATE TABLE IF NOT EXISTS TorneoEquipos (
+    TorneoId INT,
+    EquipoId INT,
+    PRIMARY KEY (TorneoId, EquipoId),
+    CONSTRAINT FK_Torneo FOREIGN KEY (TorneoId) REFERENCES Torneo(Id),
+    CONSTRAINT FK_Equipo FOREIGN KEY (EquipoId) REFERENCES Equipo(Id)
+);

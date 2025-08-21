@@ -14,6 +14,7 @@ namespace Torneosv2.src.Modules.Equipos.Application.Interfaces
         Task HandleConsultarEquiposAsync();
         Task HandleAsignarEquipoAsync();
         Task HandleShowEquiposAsync();
+  
         Task HandleSalirEquipoAsync();
     }
 }
