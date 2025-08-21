@@ -63,8 +63,13 @@ public class EquipoService : IEquipoService
         return await _repo.GetByIdAsync(id);
     }
 
-    public Task EliminarEquipoAsync(int id)
+    public async Task EliminarEquipoAsync(int id)
     {
-        throw new NotImplementedException();
+        var equipo = await _repo.GetByIdAsync(id);
+        if (equipo == null)
+            throw new Exception($"❌ Equipo con ID {id} no encontrado.");
+        _repo.Remove(equipo);
+        await _repo.SaveAsync();
+
     }
 }

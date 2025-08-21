@@ -62,7 +62,7 @@ public class TorneoService : ITorneoService
     {
         var torneo = await _repo.GetByIdAsync(id);
         if (torneo == null)
-            throw new Exception($"❌ Usuario con ID {id} no encontrado.");
+            throw new Exception($"❌ Torneo con ID {id} no encontrado.");
         _repo.Remove(torneo);
         await _repo.SaveAsync();
         

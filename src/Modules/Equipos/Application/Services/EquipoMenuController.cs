@@ -40,8 +40,30 @@ namespace Torneosv2.src.Modules.Equipos.Application.Services
         }
         public async Task HandleEliminarEquipoAsync()
         {
-            // Logic to handle deleting a team
-            // Example: await _equipoService.EliminarEquipoAsync(id);
+            Console.Clear();
+            Console.Write("ID de equipo a eliminar: ");
+            if (!int.TryParse(Console.ReadLine(), out var id))
+            {
+                Console.WriteLine("ID invalido");
+                Console.ReadKey();
+                return;
+            }
+
+            var existente = await _equipoService.ObtenerEquipoPorIdAsync(id);
+            if (existente is null)
+            {
+                Console.WriteLine("Equipo no encontrado");
+                Console.ReadKey();
+                return;
+            }
+            else
+            { 
+                await _equipoService.EliminarEquipoAsync(id);
+                Console.WriteLine("Equipo eliminado exitosamente.");
+                Console.WriteLine("Presione cualquier tecla para continuar...");
+                Console.ReadKey();
+            }
+
         }
         public async Task HandleObtenerEquipoPorIdAsync()
         {
