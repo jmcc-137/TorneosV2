@@ -12,7 +12,7 @@ public class TorneoConfiguration : IEntityTypeConfiguration<Torneo>
 {
     public void Configure(EntityTypeBuilder<Torneo> builder)
     {
-        builder.ToTable("torneo");
+        builder.ToTable("Torneo");
 
         builder.HasKey(u => u.Id);
 
@@ -25,6 +25,16 @@ public class TorneoConfiguration : IEntityTypeConfiguration<Torneo>
         builder.Property(u => u.Ciudad)
             .IsRequired()
             .HasMaxLength(100);
+        builder.Property(u => u.Ifecha)
+            .IsRequired();
+        builder.Property(u => u.Ffecha)
+            .IsRequired();
+
+        builder.HasMany(u => u.TorneoEquipos)
+            .WithOne(te => te.Torneo)
+            .HasForeignKey(te => te.TorneoId)
+            .OnDelete(DeleteBehavior.Cascade);
+
     }
         
 }

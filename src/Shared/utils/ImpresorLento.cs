@@ -7,7 +7,7 @@ namespace Torneosv2.src.Shared.utils
 {
     public class ImpresorLento
     {
-        public static void Imprimir(String texto, int velocidad = 5)
+        public static void Imprimir(String texto, int velocidad = 2)
         {
             foreach (char letra in texto)
             {

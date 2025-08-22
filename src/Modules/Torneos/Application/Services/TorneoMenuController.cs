@@ -138,9 +138,11 @@ namespace Torneosv2.src.Modules.Torneos.Application.Services
                 Console.WriteLine("Torneo no encontrado.");
                 return;
             }
-
-            await _torneoService.EliminarTorneo(id);
-            Console.WriteLine("🗑️ Torneo eliminado.");
+            else
+            {
+                await _torneoService.EliminarTorneo(id);
+                Console.WriteLine("🗑️ Torneo eliminado."); 
+            }
         }
 
         public async Task HandleUpdateTorneoAsync()

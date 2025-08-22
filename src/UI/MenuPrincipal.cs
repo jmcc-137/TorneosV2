@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Torneosv2.src.Modules.Equipos.UI;
 using Torneosv2.src.Modules.Torneos.UI;
 using Torneosv2.src.Shared.Context;
 using Torneosv2.src.Shared.Helpers;
@@ -40,12 +41,25 @@ namespace Torneosv2.src.UI
                 ImpresorLento.Imprimir("3. 💰  Transferencias (Compra, Préstamo)");
                 ImpresorLento.Imprimir("4. 📊  Estadísticas");
                 ImpresorLento.Imprimir("5. ❌  Salir");
-                int op = int.Parse(Console.ReadLine()!);
+
+                Console.Write("Seleccione una opción: ");
+                var input = Console.ReadLine();
+
+                int op;
+                if (!int.TryParse(input, out op))
+                {
+                    Console.WriteLine("Debe ingresar un número válido. Presione cualquier tecla para continuar...");
+                    Console.ReadKey();
+                    continue;
+                }
 
                 switch (op)
                 {
                     case 0:
                         await new MenuTorneo(_context).RenderMenu();
+                        break;
+                    case 1:
+                        await new MenuEquipo(_context).RenderMenu();
                         break;
                     case 5:
                         return;
